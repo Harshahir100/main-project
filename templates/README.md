@@ -13,5 +13,27 @@ It uses Google's `gemini-2.5-flash` model (via `google-genai`) to answer Python-
 - Option to delete chat history
 - Simple UI built with HTML, CSS, and JavaScript
 
+2️⃣ Create & activate a virtual environment (optional but recommended)
+
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\\Scripts\\activate    # Windows
+
+
+3️⃣ Install dependencies
+pip install -r requirements.txt
+
+
+4️⃣ Set your API key
+export GENAI_API_KEY="your_api_key_here"   # Mac/Linux
+set GENAI_API_KEY="your_api_key_here"      # Windows (cmd)
+$env:GENAI_API_KEY="your_api_key_here"     # Windows (PowerShell)
+
+
+5️⃣ Run the Flask app
+python app.py
+
+#- 
+
 
 

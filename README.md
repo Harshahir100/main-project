@@ -33,7 +33,7 @@ $env:GENAI_API_KEY="your_api_key_here"     # Windows (PowerShell)
 5️⃣ Run the Flask app
 python app.py
 
-#- 
+
 
 
 

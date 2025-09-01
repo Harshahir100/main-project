@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat History - Python Instructor</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #fff; margin: 0; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; background: rgba(20, 20, 20, 0.9); border-radius: 16px; padding: 20px; box-shadow: 0px 8px 25px rgba(0,0,0,0.6); }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #333; }
+    h1 { margin: 0; font-size: 1.8rem; }
+    .back-btn { padding: 10px 15px; background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
+    .back-btn:hover { background: linear-gradient(135deg, #43a047, #1b5e20); }
+    .month-section { margin-bottom: 30px; }
+    .month-header { background: #1f1f1f; padding: 15px; border-radius: 10px; margin-bottom: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .month-header h2 { margin: 0; font-size: 1.3rem; }
+    .conversation-count { background: #4caf50; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem; }
+    .conversations { display: none; margin-left: 20px; }
+    .conversation { background: #2c2c2c; border-radius: 10px; padding: 15px; margin-bottom: 15px; }
+    .query { color: #4caf50; margin-bottom: 10px; font-weight: bold; }
+    .response { background: #1e1e1e; padding: 15px; border-radius: 8px; white-space: pre-wrap; }
+    .code-block { background: #1a1a1a; padding: 10px; border-radius: 5px; margin: 8px 0; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9em; }
+    .empty-history { text-align: center; padding: 40px; font-size: 1.2rem; color: #aaa; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>💻 Python Instructor - Chat History</h1>
+      <a href="/" class="back-btn">Back to Chat</a>
+    </header>
+
+    {% if history %}
+      {% for month_data in history %}
+      <div class="month-section">
+        <div class="month-header" onclick="toggleSection('{{ month_data.month }}')">
+          <h2>{{ month_data.month }} - {{ month_data.title }}</h2>
+          <span class="conversation-count">{{ month_data.count }} conversation{% if month_data.count > 1 %}s{% endif %}</span>
+        </div>
+        <div id="{{ month_data.month }}" class="conversations">
+          {% for conv in month_data.conversations %}
+          <div class="conversation">
+            <div class="query">Q: {{ conv.query }}</div>
+            <div class="response">
+              {% if "```" in conv.response %}
+                {% set parts = conv.response.split("```") %}
+                {% for part in parts %}
+                  {% if loop.index0 % 2 == 1 %}
+                    <pre class="code-block">{{ part.replace("python\n", "") }}</pre>
+                  {% else %}
+                    {{ part }}
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                {{ conv.response }}
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-history">
+        <p>No chat history found.</p>
+        <p>Start a conversation on the main chat page!</p>
+      </div>
+    {% endif %}
+  </div>
+<script>
+  function toggleSection(month) {
+    const section = document.getElementById(month);
+    section.style.display = (section.style.display === 'block') ? 'none' : 'block';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Find the first month section
+    const firstMonth = document.querySelector('.month-section');
+    if (firstMonth) {
+      // Expand it by default
+      firstMonth.style.display = 'block';
+    }
+  });
+</script>
+

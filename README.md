@@ -14,28 +14,8 @@ It uses Google's `gemini-2.5-flash` model (via `google-genai`) to answer Python-
 
 ---
 
-## 📂 Project Structure
-
-python-instructor-chatbot/
-│── app.py # Flask backend entry point
-│── requirements.txt # Python dependencies
-│── chat_history.json # Stores user chat history
-│── README.md # Project documentation
-│
-├── templates/ # HTML files (Flask Jinja2 templates)
-│ ├── index.html # Main chat interface
-│ └── history.html # Chat history page
-│
-├── static/ # Frontend assets
-│ ├── css/
-│ │ └── style.css # Custom styles
-│ ├── js/
-│ │ └── script.js # Chat functionality (AJAX)
-│ └── images/ # (optional) project images/logo
 
 
-
----
 
 ## ⚙️ Setup Instructions
 
@@ -73,3 +53,4 @@ $env:GENAI_API_KEY="your_api_key_here"
 
 5️⃣ Run the Flask app
 python app.py
+

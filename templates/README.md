@@ -13,18 +13,5 @@ It uses Google's `gemini-2.5-flash` model (via `google-genai`) to answer Python-
 - Option to delete chat history
 - Simple UI built with HTML, CSS, and JavaScript
 
----
 
-## 📂 Project Structure
-
-
-python-instructor-chat/
-│── app.py # Flask backend
-│── chat_history.json # Stores chat history (auto-created)
-│── requirements.txt # Dependencies
-│── README.md # Project documentation
-│
-├── templates/
-│ ├── index.html # Main chat interface
-│ └── history.html # Chat history page
 
